@@ -71,14 +71,14 @@ const searchQuery = ref("");
 
 const companies = ref([
   {
-    name: "Mutual Benefits Package",
-    code: "MTBS",
-    logo: "/path/to/mutual-logo.png",
+    name: "First Package",
+    code: "FIRST",
+    // logo: "/path/to/mutual-logo.png",
     id: 1,
   },
   {
-    name: "ARM Package",
-    code: "AIM",
+    name: "Second Package ",
+    code: "SECOND",
     id: 2,
   },
 ]);

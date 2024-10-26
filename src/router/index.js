@@ -70,7 +70,7 @@ const routes = [
       {
         path: 'company/:id',
         component: CompanyDetailView,
-        meta: { title: 'Package Info', transition: 'slide-left' },
+        meta: { title: 'Package Details', transition: 'slide-left' },
       },
 
     ],

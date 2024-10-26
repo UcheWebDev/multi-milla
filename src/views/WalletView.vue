@@ -102,8 +102,8 @@ const activeTab = ref("Overview");
 const quickLinks = ref([
   { title: "Airtime", icon: "phone", path: "/airtime" },
   { title: "Data", icon: "wifi", path: "/data" },
-  { title: "Cable TV", icon: "tv" },
-  { title: "Electricty", icon: "bolt" },
+  // { title: "Cable TV", icon: "tv" },
+  // { title: "Electricty", icon: "bolt" },
   { title: "Finance", icon: "account_balance", path: "finance" },
   { title: "Settings", icon: "settings", path: "/settings" },
   { title: "Withdraw", icon: "wallet", path: "/payout" },
