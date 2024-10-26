@@ -1,0 +1,244 @@
+<template>
+  <div class="bg-gray-100 min-h-screen p-4 pb-16">
+    
+    <!-- Header -->
+    <header class="flex justify-between items-center mb-6">
+      <div class="flex items-center">
+        <div
+          class="w-10 h-10 bg-yellow-100 rounded-full mr-2 flex items-center justify-center"
+        >
+          <span class="text-yellow-700 font-semibold">U</span>
+        </div>
+        <h1 class="text-lg font-semibold">
+          Hello Uceeweb,<span class="ml-1">👋</span>
+        </h1>
+      </div>
+      <div class="relative">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6 text-gray-400"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
+          />
+        </svg>
+        <div
+          class="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"
+        ></div>
+      </div>
+    </header>
+
+    <!-- Balance -->
+    <div class="bg-white rounded-xl shadow-sm p-4 mb-6">
+      <div class="flex justify-between items-center mb-4">
+        <div class="flex items-baseline">
+          <span class="text-gray-400 text-lg mr-1">₦</span>
+          <span class="text-3xl font-bold"
+            >0<span class="text-gray-400">.00</span></span
+          >
+        </div>
+        <button
+          class="text-xs bg-gray-100 px-3 py-1 rounded-full text-gray-500 font-medium"
+        >
+          NGN ▼
+        </button>
+      </div>
+      <button
+        class="w-full bg-red-700 hover:bg-red-700 text-white py-3 rounded-lg text-sm font-semibold flex items-center justify-center"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5 mr-2"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+            clip-rule="evenodd"
+          />
+        </svg>
+        Withdraw
+      </button>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="grid grid-cols-4 gap-4 mb-6">
+      <QuickAction
+        v-for="action in quickActions"
+        :key="action.label"
+        :icon="action.icon"
+        :label="action.label"
+      />
+    </div>
+
+    <!-- Refer and Earn -->
+    <!-- Swiper.js promotions section -->
+    <Swiper
+      :slides-per-view="1.2"
+      :space-between="1"
+      :pagination="{ clickable: true }"
+      :modules="modules"
+      class="promotions-swiper"
+    >
+      <swiper-slide>
+        <div class="promo-card refer-card">
+          <div class="promo-content">
+            <h2>Refer and Earn</h2>
+            <p>
+              Refer a friend and earn 3000 gift points once they make a
+              transaction.
+            </p>
+            <ion-button fill="clear" class="refer-btn">Refer Now →</ion-button>
+          </div>
+        </div>
+      </swiper-slide>
+
+      <swiper-slide>
+        <div class="promo-card refer-card">
+          <div class="promo-content">
+            <h2>Refer and Earn</h2>
+            <p>
+              Refer a friend and earn 3000 gift points once they make a
+              transaction.
+            </p>
+            <ion-button fill="clear" class="refer-btn">Refer Now →</ion-button>
+          </div>
+        </div>
+      </swiper-slide>
+
+      <!-- Add more swiper-slide elements for additional promotional cards -->
+    </Swiper>
+
+    <!-- Navigation -->
+    <nav
+      class="fixed bottom-0 left-0 right-0 bg-white border-t flex justify-around py-2 px-4"
+    >
+      <NavItem
+        v-for="item in navItems"
+        :key="item.label"
+        :icon="item.icon"
+        :label="item.label"
+        :active="item.active"
+      />
+    </nav>
+  </div>
+</template>
+
+<script setup>
+import { ref } from "vue";
+import QuickAction from "@/components/QuickAction.vue";
+import NavItem from "@/components/NavItem.vue";
+
+import { Swiper, SwiperSlide } from "swiper/vue";
+import { Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
+const modules = [Pagination];
+
+const quickActions = ref([
+  { icon: "phone", label: "Airtime" },
+  { icon: "wifi", label: "Data" },
+  { icon: "tv", label: "Tv" },
+  { icon: "bolt", label: "Electricity" },
+  { icon: "account_balance", label: "Invest" },
+  { icon: "group", label: "Referral" },
+  { icon: "more_horiz", label: "More" },
+]);
+
+const navItems = ref([
+  { icon: "home", label: "Home", active: true },
+  { icon: "wallet", label: "Wallets", active: false },
+  { icon: "list", label: "Transactions", active: false },
+  { icon: "settings", label: "Settings", active: false },
+]);
+</script>
+
+<style scoped>
+.promotions-swiper {
+  padding-bottom: 40px; /* Increased space for pagination dots */
+  margin-left: -16px; /* Compensate for ion-content padding */
+  margin-right: -16px;
+  margin-top: 20px;
+  width: calc(100% + 32px);
+}
+
+.swiper-slide {
+  height: auto;
+  padding-left: 16px; /* Add left padding to first slide */
+}
+
+.promo-card {
+  height: 100%;
+  border-radius: 16px;
+  background: #3367d6;
+  color: white;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.promo-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.promo-card h2 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: white;
+}
+
+.promo-card p {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 16px;
+  flex-grow: 1;
+}
+
+.refer-btn {
+  --color: white;
+  font-weight: bold;
+  font-size: 14px;
+  --padding-start: 0;
+  --padding-end: 0;
+  height: 20px;
+  text-transform: none;
+  justify-content: flex-start;
+}
+
+/* Ensure the last slide doesn't have extra space on the right */
+.swiper-slide:last-child .promo-card {
+  margin-right: 16px;
+}
+
+/* Adjust the prestmit-card margin */
+.prestmit-card {
+  margin-top: 20px;
+}
+
+/* Swiper pagination styles */
+:deep(.swiper-pagination) {
+  bottom: 10px !important; /* Ensure pagination is above the card shadow */
+}
+
+:deep(.swiper-pagination-bullet) {
+  background: #4285f4;
+  opacity: 0.5;
+}
+
+:deep(.swiper-pagination-bullet-active) {
+  opacity: 1;
+}
+
+/* Ensure the last slide doesn't have extra space on the right */
+.swiper-slide:last-child .promo-card {
+  margin-right: 16px;
+}
+</style>

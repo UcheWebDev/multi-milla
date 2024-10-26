@@ -1,20 +1,81 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import WalletView from '../views/WalletView.vue'
+import AirtimeView from '../views/AirtimeView.vue'
+import DataView from '../views/DataView.vue'
+import SettingsView from '../views/SettingsView'
+import PayoutView from '../views/PayoutView'
+import FinanceView from '../views/FinanceView'
+import CompanyDetailView from '../views/CompanyDetailView'
+
+
+import BaseLayout from '@/layouts/BaseLayout.vue';
+import MerchantLayout from '@/layouts/MerchantLayout.vue';
+import DetailsLayout from '@/layouts/DetailsLayout.vue';
 
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: HomeView
+    component: BaseLayout,
+    children: [
+      {
+        path: '',
+        component: WalletView,
+        meta: { title: 'Overview', transition: 'slide-right' },
+      },
+      {
+        path: 'airtime',
+        component: AirtimeView,
+        meta: { title: 'Airtime', transition: 'slide-left' },
+      },
+      {
+        path: 'data',
+        component: DataView,
+        meta: { title: 'Data', transition: 'slide-left' },
+      },
+      {
+        path: 'settings',
+        component: SettingsView,
+        meta: { title: 'Settings', transition: 'slide-left' },
+      },
+      {
+        path: 'finance',
+        component: FinanceView,
+        meta: { title: 'Finance', transition: 'slide-left' },
+      },
+
+
+    ],
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-  }
+    path: '/payout',
+    component: MerchantLayout,
+    children: [
+      {
+        path: '',
+        component: PayoutView,
+        meta: { title: 'Payout', transition: 'slide-right' },
+      },
+
+    ],
+  },
+  {
+    path: '/details',
+    component: DetailsLayout,
+    children: [
+      {
+        path: '',
+        component: PayoutView,
+        meta: { title: 'Payout', transition: 'slide-right' },
+      },
+      {
+        path: 'company/:id',
+        component: CompanyDetailView,
+        meta: { title: 'Package Info', transition: 'slide-left' },
+      },
+
+    ],
+  },
+
 ]
 
 const router = createRouter({
