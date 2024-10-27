@@ -6,13 +6,24 @@ import SettingsView from '../views/SettingsView'
 import PayoutView from '../views/PayoutView'
 import FinanceView from '../views/FinanceView'
 import CompanyDetailView from '../views/CompanyDetailView'
-
+import LoginView from '../views/LoginView.vue'
+import RegistrationView from '../views/RegistrationView.vue'
 
 import BaseLayout from '@/layouts/BaseLayout.vue';
 import MerchantLayout from '@/layouts/MerchantLayout.vue';
 import DetailsLayout from '@/layouts/DetailsLayout.vue';
 
 const routes = [
+  {
+    path: '/login',
+    name: 'login',
+    component: LoginView
+  },
+  {
+    path: '/join',
+    name: 'join',
+    component: RegistrationView
+  },
   {
     path: '/',
     component: BaseLayout,

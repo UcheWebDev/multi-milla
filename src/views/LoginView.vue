@@ -141,7 +141,7 @@
         <div class="mt-6 text-center text-sm">
           <span class="text-gray-600">No account yet ?</span>
           <router-link
-            to="/"
+            to="/join"
             class="font-medium text-red-500 hover:text-red-600 ml-1"
           >
             Sign up</router-link
