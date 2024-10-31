@@ -34,11 +34,6 @@ const routes = [
         meta: { title: 'Overview', transition: 'slide-right' },
       },
       {
-        path: 'airtime',
-        component: AirtimeView,
-        meta: { title: 'Airtime', transition: 'slide-left' },
-      },
-      {
         path: 'data',
         component: DataView,
         meta: { title: 'Data', transition: 'slide-left' },
@@ -69,6 +64,19 @@ const routes = [
 
     ],
   },
+  {
+    path: '/merchant',
+    component: MerchantLayout,
+    children: [
+      {
+        path: 'airtime',
+        component: AirtimeView,
+        meta: { title: 'Airtime', transition: 'slide-left' },
+      },
+
+    ],
+  },
+
   {
     path: '/details',
     component: DetailsLayout,

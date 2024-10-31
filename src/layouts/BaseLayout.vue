@@ -10,11 +10,10 @@
           <span class="material-icons text-dark">arrow_back</span>
         </button>
         <button v-else class="text-dark">
-          <span class="material-icons text-dark">menu</span>
+          <img src="../assets/lg.png" alt="Bank Logo" class="h-10 w-20" />
         </button>
 
         <h1 class="text-dark text-xl font-semibold">{{ pageTitle }}</h1>
-        <img src="/logo-placeholder.png" alt="Bank Logo" class="h-8 w-8" />
       </header>
 
       <!-- Scrollable Content Area -->

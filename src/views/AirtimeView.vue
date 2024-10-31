@@ -16,11 +16,11 @@
     <form @submit.prevent="handleSubmit" class="space-y-6">
       <!-- Network Provider -->
       <div class="space-y-2">
-        <label class="block text-gray-500">Select Network Provider</label>
+        <label class="block text-gray-500">Network Provider</label>
         <div class="relative">
           <select
             v-model="provider"
-            class="w-full p-3 pr-10 rounded-lg border-0 border-gray-300 bg-gray-100 appearance-none text-gray-400"
+            class="w-full p-3 pr-10 border-0 border-gray-300 bg-gray-100 appearance-none text-gray-400"
           >
             <option value="">Select Bank Account</option>
             <option
@@ -55,11 +55,11 @@
 
       <!-- Phone Number -->
       <div class="space-y-2">
-        <label class="block text-gray-500">Phone Number</label>
-        <div
-          class="flex items-center bg-gray-50 rounded-lg border-gray-100 bg-gray-50"
-        >
-          <div class="flex items-center px-3 gap-2">
+        <label class="block text-gray-500">Phone</label>
+        <div class="flex items-center space-x-2">
+          <div
+            class="flex items-center py-3 px-4 gap-2 bg-gray-50 border-gray-100 bg-gray-50"
+          >
             <img src="../assets/flag.svg" alt="Nigeria flag" class="w-6 h-4" />
             <span>+234</span>
           </div>
@@ -69,9 +69,6 @@
             placeholder="Enter Phone Number"
             class="flex-1 p-3 border-gray-100 bg-gray-100"
           />
-          <button class="px-3">
-            <span class="material-icons">compare_arrows</span>
-          </button>
         </div>
       </div>
 
@@ -82,7 +79,7 @@
           type="number"
           v-model="customAmount"
           placeholder="Enter Amount"
-          class="w-full p-3 bg-gray-100 rounded-lg border-gray-100 mb-4"
+          class="w-full p-3 bg-gray-100 border-gray-100 mb-4"
         />
         <div class="grid grid-cols-4 gap-3">
           <button
@@ -90,7 +87,7 @@
             :key="amount"
             type="button"
             @click="selectAmount(amount)"
-            class="py-3 px-3 p-2 bg-gray-50 rounded-lg text-center hover:bg-gray-100"
+            class="py-3 px-3 p-2 bg-gray-100 text-center hover:bg-gray-100"
           >
             <span class="text-xs align-top">₦</span
             >{{ amount.toLocaleString() }}
@@ -98,19 +95,8 @@
         </div>
       </div>
 
-      <!-- Payment Method -->
-      <div class="space-y-2">
-        <label class="block text-gray-500">Payment Method</label>
-        <button
-          type="button"
-          class="w-full p-3 rounded-lg border-gray-100 bg-gray-100 text-left"
-        >
-          Naira Wallet
-        </button>
-      </div>
-
       <!-- Total -->
-      <div class="bg-blue-50 p-4 rounded-lg flex justify-between items-center">
+      <div class="p-4 rounded-lg flex justify-between items-center">
         <span class="text-gray-600">Total:</span>
         <span class="font-semibold"
           >NGN {{ totalAmount.toLocaleString() }}</span
@@ -121,7 +107,7 @@
       <button
         type="submit"
         :disabled="!isFormValid"
-        class="w-full p-4 text-white rounded-lg bg-red-600"
+        class="w-full p-4 text-white rounded-full bg-red-600"
       >
         Buy
       </button>
@@ -161,7 +147,6 @@ const handleSubmit = () => {
 
 <style scoped>
 h1,
-label,
 button {
   font-family: "Lato", sans-serif;
 }

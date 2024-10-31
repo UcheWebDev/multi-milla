@@ -2,7 +2,7 @@
 <template>
   <!-- Balance Card -->
   <div class="p-4 bg-white">
-    <div class="bg-red-600 rounded-lg p-4 text-white">
+    <div class="bg-red-600 p-4 text-white">
       <h2 class="text-sm mb-2 tot-bal">TOTAL BALANCE</h2>
       <div class="flex justify-between items-center">
         <div class="flex items-center">
@@ -100,7 +100,7 @@ const accountBalance = ref("150,000.00");
 const activeTab = ref("Overview");
 
 const quickLinks = ref([
-  { title: "Airtime", icon: "phone", path: "/airtime" },
+  { title: "Airtime", icon: "phone", path: "/merchant/airtime" },
   { title: "Data", icon: "wifi", path: "/data" },
   // { title: "Cable TV", icon: "tv" },
   // { title: "Electricty", icon: "bolt" },

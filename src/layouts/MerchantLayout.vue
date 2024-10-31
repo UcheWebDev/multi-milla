@@ -4,13 +4,17 @@
     <div class="max-w-md w-full h-screen flex flex-col">
       <!-- Fixed Header -->
       <header
-        class="bg-red-600 p-4 flex justify-between items-center fixed top-0 left-0 right-0 z-10 max-w-md mx-auto"
+        class="bg-white p-4 flex justify-between items-center fixed top-0 left-0 right-0 z-10 max-w-md mx-auto"
       >
-        <button v-if="!isBaseRoute" class="text-white" @click="goBack">
-          <span class="material-icons text-white">arrow_back</span>
+        <button v-if="!isBaseRoute" class="text-dark" @click="goBack">
+          <span class="material-icons text-dark">arrow_back</span>
         </button>
-        <h1 class="text-white text-xl font-semibold">{{ pageTitle }}</h1>
-        <img src="/logo-placeholder.png" alt="Bank Logo" class="h-8 w-8" />
+        <button v-else class="text-dark">
+          <span class="material-icons text-dark">menu</span>
+        </button>
+
+        <h1 class="text-dark text-xl font-semibold">{{ pageTitle }}</h1>
+        <!-- <img src="../assets/lg.png" alt="Bank Logo" class="h-10 w-20" /> -->
       </header>
 
       <!-- Scrollable Content Area -->

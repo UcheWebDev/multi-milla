@@ -1,199 +1,177 @@
 <template>
-  <div class="h-screen w-full flex items-center justify-center p-4 font-sans">
-    <div
-      class="bg-white rounded-lg shadow-xl w-full max-w-[360px] overflow-hidden"
-    >
-      <!-- Upper section with background -->
-      <div class="bg-gradient-to-br from-red-800 to-red-600 p-8 pb-16 relative">
-        <div
-          class="absolute top-0 right-0 w-32 h-32 bg-red-500 rounded-bl-full opacity-50"
-        ></div>
-        <div
-          class="absolute bottom-0 left-0 w-24 h-24 bg-red-500 rounded-tr-full opacity-30"
-        ></div>
-        <div class="relative z-10 text-center">
-          <div class="inline-block p-2 bg-white rounded-lg mb-4">
-            <svg
-              class="w-8 h-8 text-blue-600"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-              ></path>
-            </svg>
-          </div>
-          <h2 class="text-xl font-bold text-white">Create a new account</h2>
-          <p class="text-sm text-blue-100 mt-1">Enter your details to join.</p>
+  <div
+    class="min-h-screen flex flex-col items-center justify-center bg-white p-4"
+  >
+    <!-- Logo -->
+    <div class="">
+      <!-- <div class="text-3xl font-bold text-indigo-900">
+        <span class="text-emerald-400">O</span>Pay
+      </div> -->
+      <img src="../assets/lg.png" alt="Bank Logo" class="h-15 w-20" />
+    </div>
+
+    <!-- Registration Form -->
+    <div class="w-full max-w-md space-y-6">
+      <div class="text-center text-gray-700 text-lg mb-8">Create Account</div>
+
+      <form @submit.prevent="handleRegister" class="space-y-4">
+        <!-- Full Name Input -->
+        <div class="relative">
+          <input
+            type="text"
+            placeholder="Full Name"
+            v-model="formData.name"
+            class="w-full px-4 py-4 bg-gray-100/100 border-none focus:outline-none focus:ring-0 text-gray-700 text-lg placeholder:text-gray-400 shadow-sm"
+          />
+          <div class="input-background"></div>
+          <div class="input-shadow"></div>
         </div>
-      </div>
 
-      <!-- Lower section with form -->
-      <div class="p-6 pt-8">
-        <form @submit.prevent="handleSubmit" class="space-y-4">
-          <div>
-            <label
-              for="password"
-              class="block text-sm font-medium text-gray-700 mb-1"
-              >Fullname</label
-            >
-            <div class="relative">
-              <input
-                type="text"
-                id="firstname"
-                v-model="firstname"
-                required
-                class="appearance-none block w-full pl-3 pr-10 py-2 border-0 border-gray-300 bg-gray-50 text-gray-900 rounded-md focus:outline-none focus:ring-0 focus:border-blue-600 text-sm"
-                placeholder="Firstname & Lastname"
-              />
-            </div>
-          </div>
-          <div>
-            <label
-              for="password"
-              class="block text-sm font-medium text-gray-700 mb-1"
-              >Email</label
-            >
-            <div class="relative">
-              <input
-                type="email"
-                id="email"
-                v-model="email"
-                required
-                class="appearance-none block w-full pl-3 pr-10 py-2 border-0 border-gray-300 bg-gray-50 text-gray-900 rounded-md focus:outline-none focus:ring-0 focus:border-blue-600 text-sm"
-                placeholder="Enter your email"
-              />
-            </div>
-          </div>
-          <div>
-            <label
-              for="password"
-              class="block text-sm font-medium text-gray-700 mb-1"
-              >Phone</label
-            >
-            <div class="relative">
-              <input
-                type="text"
-                id="phone"
-                v-model="phone"
-                required
-                class="appearance-none block w-full pl-3 pr-10 py-2 border-0 border-gray-300 bg-gray-50 text-gray-900 rounded-md focus:outline-none focus:ring-0 focus:border-blue-600 text-sm"
-                placeholder="Enter phone no"
-              />
-            </div>
-          </div>
-          <div>
-            <label
-              for="password"
-              class="block text-sm font-medium text-gray-700 mb-1"
-              >Password</label
-            >
-            <div class="relative">
-              <input
-                :type="showPassword ? 'text' : 'password'"
-                id="password"
-                v-model="password"
-                required
-                class="appearance-none block w-full pl-3 pr-10 py-2 border-0 border-gray-300 bg-gray-50 text-gray-900 rounded-md focus:outline-none focus:ring-0 focus:border-blue-600 text-sm"
-                placeholder="Enter your password"
-              />
-              <button
-                type="button"
-                @click="togglePasswordVisibility"
-                class="absolute inset-y-0 right-0 pr-3 flex items-center"
-              >
-                <svg
-                  class="h-5 w-5 text-gray-400"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                  />
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                  />
-                </svg>
-              </button>
-            </div>
-          </div>
-
-          <div class="pt-2">
-            <button
-              type="submit"
-              class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-800"
-            >
-              Join
-            </button>
-          </div>
-        </form>
-
-        <div class="mt-6 text-center text-sm">
-          <span class="text-gray-600">Already joined ?</span>
-          <router-link
-            to="/login"
-            class="font-medium text-red-500 hover:text-red-600 ml-1"
-          >
-            Sign In</router-link
-          >
-          <!-- <button
-            @click="handleSwitchAccount"
-            class="font-medium text-red-500 hover:text-red-600 ml-1"
-          ></button> -->
+        <!-- Phone Input -->
+        <div class="relative">
+          <input
+            type="tel"
+            placeholder="Phone Number"
+            v-model="formData.phone"
+            class="w-full px-4 py-4 bg-gray-100/100 border-none focus:outline-none focus:ring-0 text-gray-700 text-lg placeholder:text-gray-400 shadow-sm"
+          />
+          <div class="input-background"></div>
+          <div class="input-shadow"></div>
         </div>
-      </div>
+
+        <!-- Email Input -->
+        <div class="relative">
+          <input
+            type="email"
+            placeholder="Email Address"
+            v-model="formData.email"
+            class="w-full px-4 py-4 bg-gray-100/100 border-none focus:outline-none focus:ring-0 text-gray-700 text-lg placeholder:text-gray-400 shadow-sm"
+          />
+          <div class="input-background"></div>
+          <div class="input-shadow"></div>
+        </div>
+
+        <!-- Password Input -->
+        <div class="relative">
+          <input
+            type="password"
+            placeholder="Create Password"
+            v-model="formData.password"
+            class="w-full px-4 py-4 bg-gray-100/100 border-none focus:outline-none focus:ring-0 text-gray-700 text-lg placeholder:text-gray-400 shadow-sm"
+          />
+          <div class="input-background"></div>
+          <div class="input-shadow"></div>
+        </div>
+
+        <!-- Password Requirements -->
+        <div class="text-sm text-gray-500 space-y-1 px-1 text-right">
+          <p>Password must contain:</p>
+          <ul class="space-y-1">
+            <li class="flex items-center gap-2 justify-end">
+              <div
+                class="w-1.5 h-1.5 rounded-full"
+                :class="hasMinLength ? 'bg-red-500' : 'bg-gray-300'"
+              ></div>
+              At least 4 characters
+            </li>
+          </ul>
+        </div>
+
+        <!-- Register Button -->
+        <button
+          type="submit"
+          class="w-full bg-red-600 text-white py-4 rounded-full hover:bg-red-500 transition-colors font-medium text-lg mt-8"
+          :disabled="!isFormValid"
+          :class="{ 'opacity-50 cursor-not-allowed': !isFormValid }"
+        >
+          Create Account
+        </button>
+
+        <!-- Login Link -->
+        <div class="text-center pt-6">
+          <p class="text-gray-600">
+            Already have an account?
+            <router-link to="/login" class="text-red-400 font-medium"
+              >Log in</router-link
+            >
+          </p>
+        </div>
+      </form>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 
-const password = ref("");
-const showPassword = ref(false);
+const formData = ref({
+  name: "",
+  phone: "",
+  email: "",
+  password: "",
+});
 
-const togglePasswordVisibility = () => {
-  showPassword.value = !showPassword.value;
+// Password validation computed properties
+const hasMinLength = computed(() => formData.value.password.length >= 4);
+
+const isFormValid = computed(() => {
+  return (
+    formData.value.name.length > 0 &&
+    formData.value.phone.length > 0 &&
+    isValidEmail(formData.value.email) &&
+    hasMinLength.value
+  );
+});
+
+const isValidEmail = (email) => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
 };
 
-const handleSubmit = () => {
-  console.log("Login submitted with password:", password.value);
+const handleRegister = () => {
+  if (isFormValid.value) {
+    console.log("Registering with data:", formData.value);
+    // Handle registration logic here
+  }
 };
 </script>
 
 <style scoped>
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
-
-.font-sans {
-  font-family: "Inter", sans-serif;
+.input-field {
+  @apply w-full px-4 py-4 rounded-xl bg-gray-50/50 border-none focus:outline-none focus:ring-0 
+         text-gray-700 text-lg placeholder:text-gray-400 relative z-10;
 }
 
-.bg-blue-600 {
-  background-color: #2563eb;
+.input-background {
+  @apply absolute inset-0 rounded-xl bg-gray-100/50 -z-10;
 }
 
-.text-blue-600 {
-  color: #2563eb;
+.input-shadow {
+  @apply absolute inset-0 rounded-xl shadow-inner-custom -z-10;
 }
 
-.from-blue-400 {
-  --tw-gradient-from: #60a5fa;
-  --tw-gradient-to: #2563eb;
+.shadow-inner-custom {
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
-.to-blue-600 {
-  --tw-gradient-to: #2563eb;
+/* Custom autofill styling */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 30px #fafafa inset !important;
+  -webkit-text-fill-color: #374151 !important;
+  caret-color: #374151 !important;
+}
+
+/* Hide password reveal button */
+input::-ms-reveal,
+input::-ms-clear {
+  display: none;
+}
+
+/* Custom placeholder styling */
+::placeholder {
+  font-weight: 400;
+  opacity: 0.7;
 }
 </style>
